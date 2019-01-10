@@ -1,0 +1,33 @@
+.Movie-logo {
+  margin-top: 15px;
+  padding: 15px;
+  animation: App-logo-spin infinite 20s linear;
+  height: 10vmin;
+  align-content: flex-start;
+}
+
+.Movie-header {
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(8px + 1vmin);
+  color: white;
+}
+
+.link {
+  padding: 10px;
+  color: white;
+}
+
+/*@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}*/
+  
