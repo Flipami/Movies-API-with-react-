@@ -19,6 +19,7 @@ class Details extends Component {
         this.loadDataDetail()
     }
     render() {
+        const { movie } = this.state
         return (
             <div>
                 {!this.state.data ? <Loading /> : <MovieListItem movie={this.state.data.results} />}
