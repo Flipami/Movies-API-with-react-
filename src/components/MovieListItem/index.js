@@ -2,39 +2,37 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link} from 'react-router-dom';
 import ApiCall from '../../Services/api'
-import Details from '../../Pages/Details';
+//import Details from '../../Pages/Details';
 
 
 class MovieCard extends Component {
-    static rootUrl = 'https://image.tmdb.org/t/p/'
-    static fileSize = [w300, h200]
+    static rootUrl = 'https://image.tmdb.org/t/p/w500_and_h282_face/'
+    //static fileSize = [w300, h200]
 
     loadDataDetail = async () => {
-        const data = await ApiCall.getMoviesItems(this.props.title);
-        this.setState({data})
+        console.log(this.props.movie.id)
     }
 
-    static async getPoster(poster_path){
+   /* static async getPoster(poster_path){
         try{
-            const posterCall = await axios.get(`${this.rootUrl}/w500/${poster_path}`)
+            const posterCall = await axios.get(`${this.rootUrl}/w500/${poster_path}`)       
             return posterCall.data;
         } 
         catch(error){
 
         }
-    }
+    }*/
 
     render() {
         const { movie }= this.props
-        const {title,overview, adult, vote_average, poster_path} = movie
+        const {title,overview, adult, vote_average, poster_path, id} = movie
 
         return (
             <div className="movie_card">
-            
-                <Link to={this.loadDataDetail}>
-                    <div className="poster"><img src={poster_path} alt="poster"></img></div>
-                    <div onClick={this.loadDataDetail} className="title"><h2>{title}</h2></div>
+                <Link to={`/movie/${id}`}>
+                <img className="poster" onClick={this.loadDataDetail} src={`${MovieCard.rootUrl}${poster_path}`} alt={title}></img>
                 </Link>
+
                 <p className="vote_average"><strong>Average: {vote_average}</strong></p>
                 <p className="adult"><strong>Category: {adult}</strong></p>
                 <h6 className="overview">Description: {overview}</h6>
@@ -44,12 +42,16 @@ class MovieCard extends Component {
 }
 
 export default MovieCard;
+/*  <Link to={this.loadDataDetail}>
+                    <div className="poster"><img src={this.getPoster} alt="poster"></img></div>
+                    <div onClick={this.loadDataDetail} className="title"><h2>{title}</h2></div>
+                </Link>*/
 // <div className={`favourite-button ${isFavourite && 'favourite-button-selected' }` } onClick={()=> {saveFavourite(fullBeer.id);}}></div>
 //<a href="<Details/>" className="poster_path"><img src={poster_path} className="poster" alt="poster"></img></a>
 //<a href="<Details/>" onClick={this.loadDataDetail}className="title">{title}</a>
 //<img src={posterView} className="poster" alt="poster"/>
-//<img class="poster" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/wJhqsBTBrWHcuLfU5kHF4Ar4HOL.jpg" srcset="https://image.tmdb.org/t/p/w300_and_h450_bestv2/wJhqsBTBrWHcuLfU5kHF4Ar4HOL.jpg 1x, https://image.tmdb.org/t/p/w600_and_h900_bestv2/wJhqsBTBrWHcuLfU5kHF4Ar4HOL.jpg 2x" alt="Aquaman"></img>
 //<img class="poster fade lazyautosizes lazyloaded" data-sizes="auto" data-src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/qd3miOf7LXzyZ4oQiu22BcHGiXT.jpg" data-srcset="https://image.tmdb.org/t/p/w185_and_h278_bestv2/qd3miOf7LXzyZ4oQiu22BcHGiXT.jpg 1x, https://image.tmdb.org/t/p/w370_and_h556_bestv2/qd3miOf7LXzyZ4oQiu22BcHGiXT.jpg 2x" alt="La princesa Mononoke" sizes="166px" srcset="https://image.tmdb.org/t/p/w185_and_h278_bestv2/qd3miOf7LXzyZ4oQiu22BcHGiXT.jpg 1x, https://image.tmdb.org/t/p/w370_and_h556_bestv2/qd3miOf7LXzyZ4oQiu22BcHGiXT.jpg 2x" src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/qd3miOf7LXzyZ4oQiu22BcHGiXT.jpg"></img>
+//
 /*{
     "vote_count": 1708,
     "id": 297802,

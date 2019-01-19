@@ -20,7 +20,7 @@ const Movies = () => (
                         <Switch>
                             <Route exact path="/home" component={Home}/>
                             <Route exact path="/search" component={Search}/> 
-                            <Route exact path="/:id" component={Details}/>
+                            <Route exact path="/movie/:id" component={Details}/>
                             <Redirect from='/' to='/home' />
                         </Switch>
                     </div>

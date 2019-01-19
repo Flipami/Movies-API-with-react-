@@ -3,15 +3,17 @@ import { withRouter } from 'react-router';
 import MovieListItem from '../components/MovieListItem'
 import ApiCall from '../Services/api.js'
 import Loading from '../components/Loading';
+import MovieCard from '../components/MovieListItem';
 
 class Details extends Component {
     state = {
-        movie: { },
+        movie: null,
         loading: false,
     }
 
     loadDataDetail = async () => {
-        const movie = await ApiCall.getMoviesItems(this.props.match.params.idMovie);
+        console.log(this)
+        const movie = await ApiCall.getMoviesDetails(this.props.match.params.id);
         this.setState({movie, loading: true})
     }
 
@@ -19,10 +21,10 @@ class Details extends Component {
         this.loadDataDetail()
     }
     render() {
-        const { movie } = this.state
+
         return (
             <div>
-                {!this.state.data ? <Loading /> : <MovieListItem movie={this.state.data.results} />}
+                {!this.state.movie ? <Loading /> : <MovieCard movie={this.state.movie} />}
             </div>
         );
     }

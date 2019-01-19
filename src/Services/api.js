@@ -6,7 +6,6 @@ class ApiCall {
     static popular = 'popular'
     static top_rated = 'top_rated'
     static now_playing = 'now_playing'
-    static idMovie = 'idMovie'
 
     static basePathUrl='https:api.themoviedb.org/'
     static apiKey = 'c24291ee0bd7a8f5ed6763bbd74b5fea';
@@ -21,9 +20,10 @@ class ApiCall {
         }
     }
 
-    static async getMoviesItems(filmName){
+    static async getMoviesDetails(id){
         try{
-            const idCall = await axios.get(`${this.basePathUrl}3/search/movie?api_key=${this.apiKey}&query=${idMovie}`)
+
+            const idCall = await axios.get(`${this.basePathUrl}3/movie/${id}?api_key=${this.apiKey}`)
             console.log(idCall)
             return idCall.data;
         } 
